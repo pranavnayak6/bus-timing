@@ -1,673 +1,761 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bus Timings - Mudarangadi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #a8edea, #fed6e3);
-      margin: 0;
-      padding: 40px 20px;
-      text-align: center;
-    }
+  <title id="documentTitle">Bus Timings - Mudarangadi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #a8edea, #fed6e3);
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-    /* Header container for logo + title */
-    .header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+    /* Header container for logo + title */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-    .header img {
-      width: 120px;
-      height: auto;
-      border-radius: 50%;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
+    .header img {
+      width: 120px;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
 
-    .header img:hover {
-      transform: scale(1.05);
-    }
+    .header img:hover {
+      transform: scale(1.05);
+    }
 
-    h1 {
-      color: #333;
-      font-size: 36px;
-      margin: 0;
-    }
+    h1 {
+      color: #333;
+      font-size: 36px;
+      margin: 0;
+    }
 
-    select {
-      padding: 12px 16px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
-      max-width: 90%;
-      margin: 30px 0;
-      transition: 0.3s ease;
-    }
+    select {
+      padding: 12px 16px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      max-width: 90%;
+      margin: 30px 0;
+      transition: 0.3s ease;
+    }
 
-    select:focus {
-      outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-    }
+    select:focus {
+      outline: none;
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+    }
 
-    select option:disabled {
-      color: #999;
-    }
+    select option:disabled {
+      color: #999;
+    }
 
-    table {
-      margin: auto;
-      border-collapse: collapse;
-      width: 80%;
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
+    table {
+      margin: auto;
+      border-collapse: collapse;
+      width: 80%;
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
 
-    th, td {
-      padding: 15px;
-      text-align: center;
-      font-size: 16px;
-    }
+    th, td {
+      padding: 15px;
+      text-align: center;
+      font-size: 16px;
+    }
 
-    th {
-      background-color: #007bff;
-      color: white;
-      font-weight: 600;
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
+    th {
+      background-color: #007bff;
+      color: white;
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
 
-    tr:hover {
-      background-color: #e0f7fa;
-    }
+    tr:hover {
+      background-color: #e0f7fa;
+    }
 
-    .credits {
-      font-size: 19.5px;
-      color: #333;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
+    .credits {
+      font-size: 19.5px;
+      color: #333;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
 
-    /* 📱 Mobile Responsive Adjustments */
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 10px;
-      }
+    /* Added style for the new language toggle button */
+    #languageToggle {
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff6f61; /* A nice contrasting color */
+      color: white;
+      cursor: pointer;
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
 
-      .header {
-        flex-direction: column;
-      }
+    #languageToggle:hover {
+      background-color: #e65c50;
+    }
 
-      .header img {
-        max-width: 40%;
-      }
+    /* 📱 Mobile Responsive Adjustments */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
 
-      h1 {
-        font-size: 24px;
-      }
+      .header {
+        flex-direction: column;
+      }
 
-      th, td {
-        font-size: 14px;
-        padding: 10px;
-      }
+      .header img {
+        max-width: 40%;
+      }
 
-      table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-        width: 100%;
-        -webkit-overflow-scrolling: touch;
-      }
+      h1 {
+        font-size: 24px;
+      }
 
-      .credits {
-        font-size: 15px;
-      }
-    }
-  </style>
+      th, td {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .credits {
+        font-size: 15px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="header">
-    <img src="logo.png" alt="TrackMyBus Logo">
-    <h1>Bus Timings - Mudarangadi</h1>
-  </div>
+  <div class="header">
+    <img src="logo.png" alt="TrackMyBus Logo">
+    <h1 id="mainTitle">Bus Timings - Mudarangadi</h1>
+  </div>
 
-  <div class="credits">
-     Designed & Developed by <br>
-    <strong>Pranav Nayak - 9164208227</strong><br>
-  </div>
+  <div class="credits">
+     Designed & Developed by <br>
+    <strong>Pranav Nayak - 9164208227</strong><br>
+  </div>
 
-  <select id="destinationSelect" onchange="filterTable()">
-    <option value="" disabled selected hidden>-- Select Destination --</option>
-    <option value="">All</option>
-    <option value="padubidri">Padubidri</option>
-    <option value="mulki">Mulki</option>
-    <option value="yermal">Yermal</option>
-    <option value="admar">Admar</option>
-    <option value="yellur">Yellur</option>
-    <option value="paniyoor">Paniyoor</option>
-    <option value="Uchila">Uchila</option>
-    <option value="kaup">Kaup</option>
-    <option value="palimar">Palimar</option>
-    <option value="kateel">Kateel</option>
-    <option value="kuthyar">Kuthyar</option>
-    <option value="shirva">Shirva</option>
-    <option value="belman">Belman</option>
-    <option value="bantakal">Bantakal</option>
-    <option value="shankarpura">Shankarpura</option>
-    <option value="katapady">Katapady</option>
-    <option value="udupi">Udupi</option>
-	<option value="hiriyadka">Hiriyadka</option>
-	<option value="perdoor">Perdoor</option>
-    <option value="mundkur">Mundkur</option>
-    <option value="kinnigoli">Kinnigoli</option>
-    <option value="balkunje">Balkunje</option>
-    <option value="Moodubelle">Moodubelle</option>
-    <option value="bailur">Bailur</option>
-  </select>
+    <button id="languageToggle" onclick="toggleLanguage()">ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಿ / Switch to Kannada</button>
 
-  <table id="busTable">
-    <thead>
-      <tr>
-        <th>Bus Name</th>
-        <th>Trip Route</th>
-        <th>Departure Time</th>
-      </tr>
-    </thead>
-    <tbody>
+  <select id="destinationSelect" onchange="filterTable()">
+        <option value="" disabled selected hidden id="selectPlaceholder">-- Select Destination --</option>
+    <option value="" id="optionAll">All</option>
+    <option value="padubidri" data-kannada="ಪಾಡುಬಿದ್ರಿ">Padubidri</option>
+    <option value="mulki" data-kannada="ಮುಲ್ಕಿ">Mulki</option>
+    <option value="yermal" data-kannada="ಯರ್ಮಲ್">Yermal</option>
+    <option value="admar" data-kannada="ಆಡ್ಮಾರ್">Admar</option>
+    <option value="yellur" data-kannada="ಯೆಲ್ಲೂರು">Yellur</option>
+    <option value="paniyoor" data-kannada="ಪಾಣಿಯೂರು">Paniyoor</option>
+    <option value="Uchila" data-kannada="ಉಚಿಲ">Uchila</option>
+    <option value="kaup" data-kannada="ಕಾಪು">Kaup</option>
+    <option value="palimar" data-kannada="ಪಾಲಿಮಾರ್">Palimar</option>
+    <option value="kateel" data-kannada="ಕಟೀಲ್">Kateel</option>
+    <option value="kuthyar" data-kannada="ಕುತ್ಯಾರ್">Kuthyar</option>
+    <option value="shirva" data-kannada="ಶಿರ್ವ">Shirva</option>
+    <option value="belman" data-kannada="ಬೆಳ್ಮಣ್">Belman</option>
+    <option value="bantakal" data-kannada="ಬಂಟಕಲ್">Bantakal</option>
+    <option value="shankarpura" data-kannada="ಶಂಕರಪುರ">Shankarpura</option>
+    <option value="katapady" data-kannada="ಕಾಟಪಾಡಿ">Katapady</option>
+    <option value="udupi" data-kannada="ಉಡುಪಿ">Udupi</option>
+    <option value="hiriyadka" data-kannada="ಹಿರಿಯಡ್ಕ">Hiriyadka</option>
+    <option value="perdoor" data-kannada="ಪೇರೂರು">Perdoor</option>
+    <option value="mundkur" data-kannada="ಮುಂಡ್ಕೂರು">Mundkur</option>
+    <option value="kinnigoli" data-kannada="ಕಿನ್ನಿಗೋಳಿ">Kinnigoli</option>
+    <option value="balkunje" data-kannada="ಬಲ್ಕುಂಜೆ">Balkunje</option>
+    <option value="Moodubelle" data-kannada="ಮೂಡುಬೆಳ್ಳೆ">Moodubelle</option>
+    <option value="bailur" data-kannada="ಬೈಲೂರು">Bailur</option>
+  </select>
 
-  <tr>
-    <td>Amarjyothi</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>06:15 AM</td>
-  </tr>
+  <table id="busTable">
+    <thead>
+      <tr>
+        <th id="thBusName">Bus Name</th>
+        <th id="thTripRoute">Trip Route</th>
+        <th id="thDepartureTime">Departure Time</th>
+      </tr>
+    </thead>
+    <tbody>
 
-  <tr>
-    <td>Maroli</td>
-    <td>Mudarangadi > Padubidri > Mangalore</td>
-    <td>06:54 AM</td>
-  </tr>
+    <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Amarjyothi</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>06:15 AM</td>
+  </tr>
 
-  <tr>
-    <td>S.V.T</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Hebri > Udupi > Hiriyadka > Perdoor</td>
-    <td>06:54 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri > Mangalore" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಮಂಗಳೂರು">
+    <td>Maroli</td>
+    <td class="route-cell">Mudarangadi > Padubidri > Mangalore</td>
+    <td>06:54 AM</td>
+  </tr>
 
-  <tr>
-    <td>Vikram</td>
-    <td>Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>07:40 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Hebri > Udupi > Hiriyadka > Perdoor" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಹೆಬ್ರಿ > ಉಡುಪಿ > ಹಿರಿಯಡ್ಕ > ಪೇರೂರು">
+    <td>S.V.T</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Hebri > Udupi > Hiriyadka > Perdoor</td>
+    <td>06:54 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Vikram</td>
+    <td class="route-cell">Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>07:40 AM</td>
+  </tr>
 
 
-  <tr>
-    <td>Asha</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>07:50 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Asha</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>07:50 AM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>07:52 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>07:52 AM</td>
+  </tr>
 
-<tr>
-    <td>Sai Ganesh Prasad</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>07:54 AM</td>
+<tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Sai Ganesh Prasad</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>07:54 AM</td>
 </tr>
 
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>08:10 AM</td>
-  </tr>  
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>08:10 AM</td>
+  </tr>  
 
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
-    <td>08:24 AM</td>
-  </tr> 
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
+    <td>08:24 AM</td>
+  </tr> 
 
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Padubidri > Hejamady > Mulki </td>
-    <td>08:28 AM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Padubidri > Hejamady > Mulki " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಹೇಜಮಾಡಿ > ಮುಲ್ಕಿ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Padubidri > Hejamady > Mulki </td>
+    <td>08:28 AM</td>
+  </tr>
 
-  <tr>
-    <td>Star</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
-    <td>08:30 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Star</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
+    <td>08:30 AM</td>
+  </tr>
 
-  <tr>
-    <td>Amarjyothi</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>08:45 AM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Amarjyothi</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>08:45 AM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>09:10 AM</td>
-  </tr> 
-
-
-  <tr>
-    <td>Star</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
-    <td>09:16 AM</td>
-  </tr>
-
-  <tr>
-    <td>Celiena</td>
-    <td>Mudarangadi > Kuthyar > Shirva</td>
-    <td>09:32 AM</td>
-  </tr>
-
-  <tr>
-    <td>Sharadamba</td>
-    <td>Mudarangadi > Admar > Padubidri</td>
-    <td>09:32 AM</td>
-  </tr>
-
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
-    <td>9:55 AM</td>
-  </tr>
-
-  <tr>
-    <td>Vikram</td>
-    <td>Mudarangadi > Palimar</td>
-    <td>10:02 AM</td>
-  </tr>
-
-  <tr>
-    <td>Ganesh</td>
-    <td>Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>10:10 AM</td>
-  </tr>
- 
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>10:05 AM</td>
-  </tr>      
-
-  <tr>
-    <td>Sharadamba</td>
-    <td>Mudarangadi >  Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>10:10 AM</td>
-  </tr>
-
-  <tr>
-    <td>Prince</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>10:12 AM</td>
-  </tr>
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>10:20 AM</td>
-  </tr> 
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>10:30 AM</td>
-  </tr> 
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>09:10 AM</td>
+  </tr> 
 
 
-  <tr>
-    <td>Asha</td>
-    <td>Mudarangadi > Padubidri > Mulki > Kateel</td>
-    <td>10:20 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Star</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
+    <td>09:16 AM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>10:26 AM</td>
-  </tr>  
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ">
+    <td>Celiena</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva</td>
+    <td>09:32 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Admar > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಆಡ್ಮಾರ್ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Sharadamba</td>
+    <td class="route-cell">Mudarangadi > Admar > Padubidri</td>
+    <td>09:32 AM</td>
+  </tr>
+
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Moodubelle " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಮೂಡುಬೆಳ್ಳೆ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
+    <td>9:55 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Palimar" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಲಿಮಾರ್">
+    <td>Vikram</td>
+    <td class="route-cell">Mudarangadi > Palimar</td>
+    <td>10:02 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Ganesh</td>
+    <td class="route-cell">Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>10:10 AM</td>
+  </tr>
+ 
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>10:05 AM</td>
+  </tr>      
+
+  <tr data-route-eng="Mudarangadi >  Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Sharadamba</td>
+    <td class="route-cell">Mudarangadi >  Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>10:10 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Prince</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>10:12 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>10:20 AM</td>
+  </tr> 
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>10:30 AM</td>
+  </tr> 
 
 
-  <tr>
-    <td>Celiena</td>
-    <td>Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
-    <td>10:27 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri > Mulki > Kateel" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಮುಲ್ಕಿ > ಕಟೀಲ್">
+    <td>Asha</td>
+    <td class="route-cell">Mudarangadi > Padubidri > Mulki > Kateel</td>
+    <td>10:20 AM</td>
+  </tr>
 
-  <tr>
-    <td>Sangam</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Belman</td>
-    <td>10:45 AM</td>
-  </tr>  
-       
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>10:26 AM</td>
+  </tr>  
+
+
+  <tr data-route-eng="Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಆಡ್ಮಾರ್ > ಯರ್ಮಲ್ > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Celiena</td>
+    <td class="route-cell">Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
+    <td>10:27 AM</td>
+    </tr>
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Belman" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬೆಳ್ಮಣ್">
+    <td>Sangam</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Belman</td>
+    <td>10:45 AM</td>
+  </tr>  
+       
+  <tr data-route-eng="Mudarangadi > Shirva > Bailur" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಶಿರ್ವ > ಬೈಲೂರು">
+    <td>Prince</td>
+    <td class="route-cell">Mudarangadi > Shirva > Bailur</td>
+    <td>10:58 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>11:07 AM</td>
+  </tr> 
+
+  <tr data-route-eng="Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಬೆಳ್ಮಣ್ > ಮುಂಡ್ಕೂರು > ಕಿನ್ನಿಗೋಳಿ > ಬಲ್ಕುಂಜೆ">
+    <td>Pranam</td>
+    <td class="route-cell">Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje</td>
+    <td>11:07 AM</td>
+  </tr>
+
+  <tr data-route-eng=" Mudarangadi >  Padubidri > Hejamady > Mulki " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಹೇಜಮಾಡಿ > ಮುಲ್ಕಿ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi >  Padubidri > Hejamady > Mulki </td>
+    <td>11:24 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Vikram</td>
+    <td class="route-cell">Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi</td>
+    <td>11:37 AM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
+    <td>11:42 AM</td>
+  </tr> 
 	
-  <tr>
-    <td>Prince</td>
-    <td>Mudarangadi > Shirva > Bailur</td>
-    <td>10:58 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Amarjyothi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>12:05 PM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>11:07 AM</td>
-  </tr> 
+  <tr data-route-eng="Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Ganesh</td>
+    <td class="route-cell">Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>12:12 PM</td>
+  </tr>
 
-  <tr>
-    <td>Pranam</td>
-    <td>Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje</td>
-    <td>11:07 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಆಡ್ಮಾರ್ > ಯರ್ಮಲ್ > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>P.M.T</td>
+    <td class="route-cell">Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
+    <td>12:34 PM</td>
+  </tr>
 
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi >  Padubidri > Hejamady > Mulki </td>
-    <td>11:24 AM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Star</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
+    <td>12:36 PM</td>
+  </tr>
 
-  <tr>
-    <td>Vikram</td>
-    <td>Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi</td>
-    <td>11:37 AM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>S.V.T</td>
+    <td class="route-cell"> Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>12:50 PM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
-    <td>11:42 AM</td>
-  </tr> 
-	
-  <tr>
-    <td>Amarjyothi</td>
-    <td>Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>12:05 PM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Moodubelle " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಮೂಡುಬೆಳ್ಳೆ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
+    <td>12:56 PM</td>
+  </tr>
 
-  <tr>
-    <td>Ganesh</td>
-    <td>Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>12:12 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Asha</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > udupi</td>
+    <td>01:10 PM</td>
+  </tr>
 
-  <tr>
-    <td>P.M.T</td>
-    <td>Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
-    <td>12:34 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>01:12 PM</td>
+  </tr> 
 
-  <tr>
-    <td>Star</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Katapady > Udupi</td>
-    <td>12:36 PM</td>
-  </tr>
-
-  <tr>
-    <td>S.V.T</td>
-    <td> Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>12:50 PM</td>
-  </tr>
-
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
-    <td>12:56 PM</td>
-  </tr>
-
-  <tr>
-    <td>Asha</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > udupi</td>
-    <td>01:10 PM</td>
-  </tr>
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>01:12 PM</td>
-  </tr> 
-
-<tr>
-   <td>AKMS</td>
-   <td>Mudarangadi > Padubidri</td>
-   <td>02:07 PM</td> 
+<tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+   <td>AKMS</td>
+   <td class="route-cell">Mudarangadi > Padubidri</td>
+   <td>02:07 PM</td> 
 </tr>
 
-  <tr>
-    <td>Vikram</td>
-    <td>Mudarangadi > Yellur > Uchila > Paniyoor > Kaup > Katapady > Udupi</td>
-    <td>02:04 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Yellur > Uchila > Paniyoor > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಉಚಿಲ > ಪಾಣಿಯೂರು > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Vikram</td>
+    <td class="route-cell">Mudarangadi > Yellur > Uchila > Paniyoor > Kaup > Katapady > Udupi</td>
+    <td>02:04 PM</td>
+  </tr>
 
-  <tr>
-    <td>Prince</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>02:07 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Prince</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>02:07 PM</td>
+  </tr>
 
-  <tr>
-    <td>Sharadamba</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>02:10 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Sharadamba</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>02:10 PM</td>
+  </tr>
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>02:35 PM</td>
-  </tr>      
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>02:35 PM</td>
+  </tr>      
 
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>02:38 PM</td>
-  </tr> 
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>02:38 PM</td>
+  </tr> 
 
-  <tr>
-    <td>Pranam</td>
-    <td>Mudarangadi > Kaup > Udupi</td>
-    <td>02:50 PM</td>
-  </tr> 
+  <tr data-route-eng="Mudarangadi > Kaup > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕಾಪು > ಉಡುಪಿ">
+    <td>Pranam</td>
+    <td class="route-cell">Mudarangadi > Kaup > Udupi</td>
+    <td>02:50 PM</td>
+  </tr> 
 
-<tr>
-    <td>Prince</td>
-    <td>Mudarangadi > Shirva > Bailur</td>
-    <td>02:53 PM</td>
-  </tr>
+<tr data-route-eng="Mudarangadi > Shirva > Bailur" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಶಿರ್ವ > ಬೈಲೂರು">
+    <td>Prince</td>
+    <td class="route-cell">Mudarangadi > Shirva > Bailur</td>
+    <td>02:53 PM</td>
+  </tr>
 
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Padubidri > Hejamady > Mulki </td>
-    <td>03:05 PM</td>
-  </tr>
-
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
-    <td>03:10 PM</td>
-  </tr> 
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>03:30 PM</td>
-  </tr> 
-
-  <tr>
-    <td>Vikram</td>
-    <td>Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>03:35 PM</td>
-  </tr>
-
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
-    <td>03:45 PM</td>
-  </tr>
-
-<tr>
-    <td>P.M.T</td>
-    <td>Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
-    <td>04:50 PM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Padubidri > Hejamady > Mulki " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಹೇಜಮಾಡಿ > ಮುಲ್ಕಿ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Padubidri > Hejamady > Mulki </td>
+    <td>03:05 PM</td>
+  </tr>
 
 
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Kaup > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಕಾಪು > ಉಡುಪಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Kaup > Udupi</td>
+    <td>03:10 PM</td>
+  </tr> 
 
-  <tr>
-    <td>Sangam</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Udupi </td>
-    <td>03:56 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>03:30 PM</td>
+  </tr> 
 
-  <tr>
-    <td>Star</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>04:08 PM</td>
-  </tr>
+  <tr data-route-eng="Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Vikram</td>
+    <td class="route-cell">Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>03:35 PM</td>
+  </tr>
 
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi >  Padubidri > Hejamady > Mulki </td>
-    <td>04:20 PM</td>
-  </tr>
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Moodubelle " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಮೂಡುಬೆಳ್ಳೆ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
+    <td>03:45 PM</td>
+  </tr>
 
-
-  <tr>
-    <td>Amarjyothi</td>
-    <td>Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>04:54 PM</td>
-  </tr>
-
-  <tr>
-    <td>Ganesh</td>
-    <td>Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
-    <td>04:56 PM</td>
-  </tr>
-
-  <tr>
-    <td>Sharadamba</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>05:10 PM</td>
-  </tr>
-
-  <tr>
-    <td>AKMS</td>
-    <td>Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi</td>
-    <td>05:20 PM</td>
-  </tr>
-
-  <tr>
-    <td>Prince</td>
-    <td>Mudarangadi > Shirva > Bailur</td>
-    <td>05:20 PM</td>
-  </tr>
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>05:50 PM</td>
-  </tr> 
-
-  <tr>
-    <td>Pranam</td>
-    <td>Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje</td>
-    <td>05:53 PM</td>
-  </tr>
-
-  <tr>
-    <td>Cekiena</td>
-    <td> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
-    <td>05:58 PM</td>
-  </tr>
-
-  <tr>
-    <td>Maroli</td>
-    <td> Mudarangadi > Kuthyar > Shirva </td>
-    <td>06:01 PM</td>
-  </tr>
-
-  <tr>
-    <td>Asha</td>
-    <td>Mudarangadi > Padubidri > Mulki > Kateel</td>
-    <td>06:15 PM</td>
-  </tr>
-
-  <tr>
-    <td>Sharadamba</td>
-    <td>Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
-    <td>06:21 PM</td>
-  </tr>
-
-  <tr>
-    <td>Kanthi</td>
-    <td>Mudarangadi > Padubidri</td>
-    <td>06:25 PM</td>
-  </tr>
-
-  <tr>
-    <td>P.M.T</td>
-    <td>Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
-    <td>06:30 PM</td>
-  </tr>
-
-  <tr>
-    <td>Sangam</td>
-    <td>Mudarangadi > Shirva</td>
-    <td>08:20 PM</td>
-  </tr>
+<tr data-route-eng="Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಆಡ್ಮಾರ್ > ಯರ್ಮಲ್ > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>P.M.T</td>
+    <td class="route-cell">Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
+    <td>04:50 PM</td>
+  </tr>
 
 
 
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Udupi " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಉಡುಪಿ">
+    <td>Sangam</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Udupi </td>
+    <td>03:56 PM</td>
+  </tr>
 
- </tbody>
-  </table>
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Star</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>04:08 PM</td>
+  </tr>
 
-  <script>
-    function filterTable() {
-      let selected = document.getElementById("destinationSelect").value.toLowerCase();
-      let rows = document.querySelectorAll("#busTable tbody tr");
+  <tr data-route-eng=" Mudarangadi >  Padubidri > Hejamady > Mulki " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಹೇಜಮಾಡಿ > ಮುಲ್ಕಿ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi >  Padubidri > Hejamady > Mulki </td>
+    <td>04:20 PM</td>
+  </tr>
 
-      rows.forEach(row => {
-        let destinations = row.cells[1].textContent.toLowerCase();
-        row.style.display = selected === "" || destinations.includes(selected) ? "" : "none";
-      });
-    }
-  </script>
+
+  <tr data-route-eng="Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Amarjyothi</td>
+    <td class="route-cell">Mudarangadi > Kuthyar >  Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>04:54 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಪಾಣಿಯೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Ganesh</td>
+    <td class="route-cell">Mudarangadi > Yellur > Paniyoor > Uchila > Kaup > Katapady > Udupi</td>
+    <td>04:56 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Sharadamba</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>05:10 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಯೆಲ್ಲೂರು > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>AKMS</td>
+    <td class="route-cell">Mudarangadi > Yellur > Uchila > Kaup > Katapady > Udupi</td>
+    <td>05:20 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Shirva > Bailur" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಶಿರ್ವ > ಬೈಲೂರು">
+    <td>Prince</td>
+    <td class="route-cell">Mudarangadi > Shirva > Bailur</td>
+    <td>05:20 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>05:50 PM</td>
+  </tr> 
+
+  <tr data-route-eng="Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಬೆಳ್ಮಣ್ > ಮುಂಡ್ಕೂರು > ಕಿನ್ನಿಗೋಳಿ > ಬಲ್ಕುಂಜೆ">
+    <td>Pranam</td>
+    <td class="route-cell">Mudarangadi > Belman > Mundkur > Kinnigoli > Balkunje</td>
+    <td>05:53 PM</td>
+  </tr>
+
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva > Moodubelle " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಮೂಡುಬೆಳ್ಳೆ">
+    <td>Cekiena</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva > Moodubelle </td>
+    <td>05:58 PM</td>
+  </tr>
+
+  <tr data-route-eng=" Mudarangadi > Kuthyar > Shirva " data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ">
+    <td>Maroli</td>
+    <td class="route-cell"> Mudarangadi > Kuthyar > Shirva </td>
+    <td>06:01 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri > Mulki > Kateel" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ > ಮುಲ್ಕಿ > ಕಟೀಲ್">
+    <td>Asha</td>
+    <td class="route-cell">Mudarangadi > Padubidri > Mulki > Kateel</td>
+    <td>06:15 PM</td>
+    </tr>
+
+  <tr data-route-eng="Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಕುತ್ಯಾರ್ > ಶಿರ್ವ > ಬಂಟಕಲ್ > ಶಂಕರಪುರ > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>Sharadamba</td>
+    <td class="route-cell">Mudarangadi > Kuthyar > Shirva > Bantakal > Shankarpura > Katapady > Udupi</td>
+    <td>06:21 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Padubidri" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಪಾಡುಬಿದ್ರಿ">
+    <td>Kanthi</td>
+    <td class="route-cell">Mudarangadi > Padubidri</td>
+    <td>06:25 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಆಡ್ಮಾರ್ > ಯರ್ಮಲ್ > ಉಚಿಲ > ಕಾಪು > ಕಾಟಪಾಡಿ > ಉಡುಪಿ">
+    <td>P.M.T</td>
+    <td class="route-cell">Mudarangadi > Admar > Yermal > Uchila > Kaup > Katapady > Udupi</td>
+    <td>06:30 PM</td>
+  </tr>
+
+  <tr data-route-eng="Mudarangadi > Shirva" data-kannada-route="ಮೂಡಾರಂಗಡಿ > ಶಿರ್ವ">
+    <td>Sangam</td>
+    <td class="route-cell">Mudarangadi > Shirva</td>
+    <td>08:20 PM</td>
+  </tr>
+ </tbody>
+  </table>
+
+  <script>
+    // GLOBAL STATE VARIABLE
+    let currentLanguage = 'en';
+
+    // TRANSLATION MAPS
+    const translations = {
+      en: {
+        title: 'Bus Timings - Mudarangadi',
+        button: 'ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಿ / Switch to Kannada',
+        thBusName: 'Bus Name',
+        thTripRoute: 'Trip Route',
+        thDepartureTime: 'Departure Time',
+        selectPlaceholder: '-- Select Destination --',
+        optionAll: 'All'
+      },
+      kn: {
+        title: 'ಬಸ್ ಸಮಯಗಳು - ಮೂಡಾರಂಗಡಿ',
+        button: 'ಇಂಗ್ಲಿಷ್‌ಗೆ ಬದಲಿಸಿ / Switch to English',
+        thBusName: 'ಬಸ್ ಹೆಸರು',
+        thTripRoute: 'ಪ್ರಯಾಣ ಮಾರ್ಗ',
+        thDepartureTime: 'ಹೊರಡುವ ಸಮಯ',
+        selectPlaceholder: '-- ಗಮ್ಯಸ್ಥಾನ ಆಯ್ಕೆಮಾಡಿ --',
+        optionAll: 'ಎಲ್ಲಾ'
+      }
+    };
+
+    function toggleLanguage() {
+      // 1. Update the language state
+      currentLanguage = currentLanguage === 'en' ? 'kn' : 'en';
+      const langData = translations[currentLanguage];
+
+      // 2. Update simple elements (Title, Button, Table Headers)
+      document.title = langData.title;
+      document.getElementById('mainTitle').textContent = langData.title;
+      document.getElementById('languageToggle').textContent = langData.button;
+      document.getElementById('thBusName').textContent = langData.thBusName;
+      document.getElementById('thTripRoute').textContent = langData.thTripRoute;
+      document.getElementById('thDepartureTime').textContent = langData.thDepartureTime;
+      
+      // 3. Update the Destination Select dropdown
+      document.getElementById('selectPlaceholder').textContent = langData.selectPlaceholder;
+      document.getElementById('optionAll').textContent = langData.optionAll;
+
+      const selectOptions = document.querySelectorAll('#destinationSelect option');
+      selectOptions.forEach(option => {
+        // Skip the placeholder and "All" options as they are handled above
+        if (option.id === 'selectPlaceholder' || option.id === 'optionAll') return;
+
+        if (currentLanguage === 'kn') {
+          // Store English text if not already stored
+          if (!option.hasAttribute('data-english-text')) {
+            option.setAttribute('data-english-text', option.textContent);
+          }
+          // Switch to Kannada
+          option.textContent = option.getAttribute('data-kannada');
+        } else {
+          // Switch back to English
+          const englishText = option.getAttribute('data-english-text');
+          if (englishText) {
+            option.textContent = englishText;
+          }
+        }
+      });
+
+      // 4. Update the Bus Routes in the Table
+      const routeRows = document.querySelectorAll('#busTable tbody tr');
+      routeRows.forEach(row => {
+        const routeCell = row.querySelector('.route-cell');
+        const kannadaRoute = row.getAttribute('data-kannada-route');
+        const englishRoute = row.getAttribute('data-route-eng');
+        
+        if (routeCell && kannadaRoute && englishRoute) {
+          if (currentLanguage === 'kn') {
+            routeCell.textContent = kannadaRoute;
+          } else {
+            routeCell.textContent = englishRoute;
+          }
+        }
+      });
+
+      // Re-run the filter to ensure the current selection works with the new language display
+      filterTable();
+    }
+
+    // Original filterTable function (kept simple, as the filtering relies on the English `value` attribute)
+    function filterTable() {
+      let selectedValue = document.getElementById("destinationSelect").value.toLowerCase();
+      let rows = document.querySelectorAll("#busTable tbody tr");
+
+      rows.forEach(row => {
+        // Filtering is correctly done against the English route string stored in 'data-route-eng'
+        let destinations = row.getAttribute('data-route-eng').toLowerCase();
+        row.style.display = selectedValue === "" || destinations.includes(selectedValue) ? "" : "none";
+      });
+    }
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
