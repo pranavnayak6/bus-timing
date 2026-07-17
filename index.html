@@ -106,6 +106,10 @@ tr:hover {
 @media (max-width: 600px) {
   body {
     padding: 20px 10px;
+	.instagram-link {
+  font-size: 14px;
+  padding: 7px 15px;
+}
   }
 
   .header {
@@ -114,6 +118,25 @@ tr:hover {
 
   .header img {
     max-width: 40%;
+	.instagram-link {
+  display: inline-block;
+  margin-top: 8px;
+  margin-bottom: 5px;
+  padding: 8px 18px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.instagram-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
   }
 
   h1 {
@@ -142,15 +165,17 @@ tr:hover {
 </head>
 <body>
 
-  <div class="header">
+<div class="header">
     <img src="logo.png" alt="TrackMyBus Logo">
-    <h1>Bus Timings - Mudarangadi</h1>
-  </div>
 
-  <div class="credits">
-     Designed & Developed by <br>
-    <strong>Pranav Nayak - 9164208227</strong><br>
-  </div>
+    <a href="https://instagram.com/real.warriors.mudarangadi"
+       target="_blank"
+       class="instagram-link">
+        📷 Follow us on Instagram
+    </a>
+
+    <h1>Bus Timings - Mudarangadi</h1>
+</div>
 
   <select id="destinationSelect" onchange="filterTable()">
     <option value="" disabled selected hidden>-- Select Destination --</option>
