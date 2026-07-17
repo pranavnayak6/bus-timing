@@ -341,7 +341,7 @@ tr:hover {
 
 <tr>
     <td>A.K.M.S</td>
-    <td>09:35 AM</td>]
+    <td>09:35 AM</td>
 	<td>Mudarangadi > Nandikoor > Palimar</td>
   </tr>
 
@@ -752,17 +752,20 @@ tr:hover {
  </tbody>
   </table>
 
-  <script>
-    function filterTable() {
-      let selected = document.getElementById("destinationSelect").value.toLowerCase();
-      let rows = document.querySelectorAll("#busTable tbody tr");
+<script>
+function filterTable() {
+    let selected = document.getElementById("destinationSelect").value.toLowerCase();
+    let rows = document.querySelectorAll("#busTable tbody tr");
 
-      rows.forEach(row => {
-        let destinations = row.cells[1].textContent.toLowerCase();
-        row.style.display = selected === "" || destinations.includes(selected) ? "" : "none";
-      });
-    }
-  </script>
+    rows.forEach(row => {
+        let destinations = row.cells[2].textContent.toLowerCase();
 
+        row.style.display =
+            selected === "" || destinations.includes(selected)
+            ? ""
+            : "none";
+    });
+}
+</script>
 </body>
 </html>
